@@ -576,13 +576,14 @@ function Library.ESP.Billboard(args)
 
     BillboardTable.SetText = function(text)
         if BillboardTable.Deleted or not Text then return; end
+        if args.WantDistance == false then return end;
 
         BillboardTable.Settings.Name = (typeof(text) == "string" and text or BillboardTable.Settings.Name);
         Text.Text = BillboardTable.Settings.Name;
     end;
     BillboardTable.SetDistanceText = function(distance)
         if BillboardTable.Deleted or not Text then return; end
-        print(args.TextSize);
+        if args.WantDistance == false then return end;
 
         if typeof(distance) ~= "number" then return end;
         Text.Text = string.format("%s\n<font size=\"%d\">[%s]</font>", BillboardTable.Settings.Name, BillboardTable.Settings.TextSize - 3, distance)
@@ -717,6 +718,7 @@ function Library.ESP.Highlight(args)
         MaxDistance = args.MaxDistance,
         StudsOffset = args.StudsOffset,
         Color = args.TextColor,
+        WantDistance = args.ShowText or true;
         WasCreatedWithDifferentESP = true
     });
 
