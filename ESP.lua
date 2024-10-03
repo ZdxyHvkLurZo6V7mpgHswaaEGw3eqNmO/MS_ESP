@@ -718,7 +718,8 @@ function Library.ESP.Highlight(args)
 	end
 	assert(typeof(args.Model) == "Instance", "args.Model must be an Instance.");
 	
-	print(args.WantDistance);
+	print("XD");
+	print(args.ShowText);
 	
 	Library.Debug("Creating Highlight '" .. tostring(args.Name) .. "'...")
 	local BillboardTable = Library.ESP.Billboard({
