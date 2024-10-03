@@ -478,7 +478,9 @@ function Library.ESP.Billboard(args)
 	assert(typeof(args) == "table", "args must be a table.");
 	args = Library.Validate(args, Templates.Billboard);
 	assert(typeof(args.Model) == "Instance", "args.Model must be an Instance.");
-
+	
+	warn(args.WantDistance)
+	
 	Library.Debug("Creating Billboard '" .. tostring(args.Name) .. "'...")
 	-- // Instances // --
 	local GUI = createInstance("BillboardGui", {
@@ -720,6 +722,11 @@ function Library.ESP.Highlight(args)
 	
 	print("XD");
 	print(args.ShowText);
+	local NeedDistance = true;
+	if args.ShowText == false then 
+		NeedDistance = false;
+		print("Not Need Distance");
+	end;
 	
 	Library.Debug("Creating Highlight '" .. tostring(args.Name) .. "'...")
 	local BillboardTable = Library.ESP.Billboard({
@@ -728,7 +735,7 @@ function Library.ESP.Highlight(args)
 		MaxDistance = args.MaxDistance,
 		StudsOffset = args.StudsOffset,
 		Color = args.TextColor,
-		WantDistance = args.ShowText or true;
+		WantDistance = NeedDistance;
 		WasCreatedWithDifferentESP = true
 	});
 
