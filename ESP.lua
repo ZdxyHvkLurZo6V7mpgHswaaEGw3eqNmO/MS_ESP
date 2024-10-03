@@ -583,8 +583,10 @@ function Library.ESP.Billboard(args)
     BillboardTable.SetDistanceText = function(distance)
         if BillboardTable.Deleted or not Text then return; end
 
-        local _TextSize = typeof(args.TextSize) == "number" and args.TextSize or BillboardTable.Settings.TextSize;
-        if _TextSize == 0 then return end;
+        if args.TextSize == 0 then 
+            Text.Text = "";
+            return;
+        end; 
         if typeof(distance) ~= "number" then return end;
         Text.Text = string.format("%s\n<font size=\"%d\">[%s]</font>", BillboardTable.Settings.Name, BillboardTable.Settings.TextSize - 3, distance)
     end;
